@@ -2,3 +2,5 @@
 ./src/.env
 scraping.db
 __pycache__
+makeEmail.py
+./src/mailer/makeEmail.py

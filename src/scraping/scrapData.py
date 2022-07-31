@@ -15,7 +15,8 @@ class Scraper:
             }
         else:
             result = {
-                "stock": hasStock
+                "stock": hasStock,
+                "price": -1,
             }
 
         return result

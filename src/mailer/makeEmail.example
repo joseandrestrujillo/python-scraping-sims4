@@ -1,0 +1,78 @@
+from .mailer import mailer
+from decouple import config
+
+class makeEmail:
+    url = config('URL_SCRAPING')
+    def HaveStock(price, minorPrice):
+        subject = 'VUELVE A HABER STOCK!!'
+        content = f"""
+            <!doctype html>
+            <html>
+                <head></head>
+                <body>
+                    <p>Este mail ha sido generado automáticamente porque...</p><br> 
+                    <p><strong>¡VUELVE A HABER STOCK DE LA EXPANSIÓN!</strong></p><br>
+                    <p>Por aqui dejo la info jeje</p>
+                    <p>Precio actual: {price} €</p>
+                    <p>Menor precio encontrado: {minorPrice} €</p>
+                    <p>Enlace: </p><a href="{makeEmail.url}">{makeEmail.url}</a>
+                </body>
+            </html>
+        """
+        mailer().sendMail(subject=subject, content=content)
+
+    def BadNews():
+        subject = 'Malas noticias :('
+        content = f"""
+            <!doctype html>
+            <html>
+                <head></head>
+                <body>
+                    <p>Este mail ha sido generado automáticamente porque...</p><br> 
+                    <p><strong>Ya no hay stock... :_ (</strong></p><br>
+                    <p>Por si no me crees jeje</p>
+                    <p>Enlace: </p><a href="{makeEmail.url}">{makeEmail.url}</a>
+                </body>
+            </html>
+        """
+        mailer().sendMail(subject=subject, content=content)
+
+
+    def HistoricalPrice(price, minorPrice, prevPrice):
+        subject = 'BAJADON DE PRECIOO HISTORICO!!'
+        content = f"""
+            <!doctype html>
+            <html>
+                <head></head>
+                <body>
+                    <p>Este mail ha sido generado automáticamente porque...</p><br> 
+                    <p><strong>¡HA BAJADO EL PRECIO A NIVELES CHOCOSFERICOS!</strong></p>
+                    <p>Es el precio más bajo que he registrado!!</p><br>
+                    <p>Por aqui dejo la info jeje</p>
+                    <p>Precio actual: {price} €</p>
+                    <p>Anterior precio registrado: {prevPrice} €</p>
+                    <p>Menor precio anterior: {minorPrice} €</p>
+                    <p>Enlace: </p><a href="{makeEmail.url}">{makeEmail.url}</a>
+                </body>
+            </html>
+        """
+        mailer().sendMail(subject=subject, content=content)
+
+    def PriceDecrease(price, minorPrice, prevPrice):
+        subject = 'HA BAJADO EL PRECIO!!'
+        content = f"""
+            <!doctype html>
+            <html>
+                <head></head>
+                <body>
+                    <p>Este mail ha sido generado automáticamente porque...</p><br> 
+                    <p><strong>¡HA BAJADO EL PRECIO DESDE LA ÚLTIMA COMPROBACIÓN!</strong></p><br>
+                    <p>Por aqui dejo la info jeje</p>
+                    <p>Precio actual: {price} €</p>
+                    <p>Anterior precio registrado: {prevPrice} €</p>
+                    <p>Menor precio encontrado: {minorPrice} €</p>
+                    <p>Enlace: </p><a href="{makeEmail.url}">{makeEmail.url}</a>
+                </body>
+            </html>
+        """
+        mailer().sendMail(subject=subject, content=content)
